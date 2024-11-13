@@ -4,7 +4,7 @@ import InputPlace from "./inputPlace/InputPlace";
 import {Link} from "expo-router"
 
 
-export default Login = () => {
+export default TelaLogin = () => {
 
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -14,7 +14,7 @@ export default Login = () => {
         try {
             console.log(name, email, password)
 
-            const response = await fetch('http://localhost:8000/login', {
+            const response = await fetch('http://localhost:8000/auth/login', {
                 method: "POST",
                 
                 headers: {
@@ -29,7 +29,7 @@ export default Login = () => {
             }
             ).then((response) => {
                 if (response.status == 200)
-                    alert('Usuário criado com sucesso')
+                    alert('Usuário logado com sucesso')
             })
         } catch (error) {
             console.error("Erro: ", error)

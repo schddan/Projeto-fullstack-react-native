@@ -3,7 +3,7 @@ import { Text, TextInput, View, StyleSheet, Image, Pressable } from "react-nativ
 import InputPlace from "./inputPlace/InputPlace";
 
 
-export default Login = () => {
+export default TelaCadastro = () => {
 
     const [name, setName] = React.useState('');
     const [surname, setSurName] = React.useState('');
@@ -15,7 +15,7 @@ export default Login = () => {
         try {
             console.log(name, email, password)
 
-            const response = await fetch('http://localhost:8000/registro', {
+            const response = await fetch('http://localhost:8000/auth/register', {
                 method: "POST",
                 headers: {
                     Accept: 'application/json',

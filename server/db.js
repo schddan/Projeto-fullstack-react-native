@@ -37,6 +37,10 @@ const User = sequelize.define('user', {
         allowNull: false,
         defaultValue: 'inativo'
     },
+    profile_image: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true
+    }
 }, {freezeTableName: true})
 
 const criarTabelas = () => {
