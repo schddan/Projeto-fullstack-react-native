@@ -59,7 +59,7 @@ const login = async (req, res) => {
             
              
         )
-        res.send({msg: "Você foi logado", token:token})
+        res.send({msg: "Você foi logado", token:token, user_id: usuario.id})
     } catch(error){
         console.log(error)
         res.status(500).send("Houve um problema")

@@ -12,4 +12,4 @@ const get_user = async (req, res) => {
 
 }
 
-export default { get_user }
+export default { get_user}
