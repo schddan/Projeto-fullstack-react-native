@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from "react-native";
 import { AppContext } from "../../scripts/AppContext";
 import * as ImagePicker from 'expo-image-picker';    //npm install expo-image-picker
+import { router } from "expo-router";
 
 
 
@@ -75,6 +76,8 @@ export default TelaPerfil = () => {
                 <Text>Email: {user.email}</Text>
                 <Text>Data de nascimento: {user.dataNascimento}</Text>
             </View>
+            <Pressable style={styles.button} onPress={() => {router.replace("/telaAlterarSenha")}}><Text style={{ color: '#ffffff' }}>Alterar Senha</Text></Pressable>
+
 
         </View>
     )
@@ -87,5 +90,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: '100%',
         justifyContent: 'space-around'
+    },
+    button:{
+        backgroundColor: '#333333',
+        width: 250,
+        height: 40,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 5
     }
 })
