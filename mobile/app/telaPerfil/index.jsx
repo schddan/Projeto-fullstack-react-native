@@ -1,37 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from "react-native";
+import { AppContext } from "../../scripts/AppContext";
+import * as ImagePicker from 'expo-image-picker';    //npm install expo-image-picker
 
-//1 ajeitar o use context
+
 
 export default TelaPerfil = () => {
-    const [user, setUser] = useState(null)
+    const { user, setUser } = useContext(AppContext)
+    const [image, setImage] = useState('');
 
-    const handleSendImage = async () => {
-        try{
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+    
+        if (!result.canceled) {
+            const newImageUri = result.assets[0].uri;
+            setImage(newImageUri);
+            handleSendImage(newImageUri);
+        }
+    };
+    
+    const handleSendImage = async (imageUri) => {
+        try {
             const data = {
-                "file": image,
+                "file": imageUri,
                 "upload_preset": "ml_default",
-            }
+            };
             const res = await fetch("https://api.cloudinary.com/v1_1/dwescvnsn/upload", {
                 method: "POST",
                 headers: {
-                    "content-type": "application/json" 
-
+                    "content-type": "application/json"
                 },
                 body: JSON.stringify(data)
             });
-            const result = await res.json()
-            setImage(result.url)
-            setUser({...user, profile_image: result.url})
-            await saveNewImageURLonBackend(result)
-        }catch(e){
-            console.log(e)
+            const result = await res.json();
+            setImage(result.url);
+            setUser({ ...user, profile_image: result.url });
+            await saveNewImageURLonBackend(result.url);
+        } catch (e) {
+            console.log(e);
         }
-    }
+    };
+    
+    const saveNewImageURLonBackend = async (newImageUrl) => {
+        try {
+            const data = {
+                "profile_image": newImageUrl,
+            };
+            const res = await fetch(`http://localhost:8000/user/save_user_image/${user.id}`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    
+
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: "https://cdn-icons-png.flaticon.com/512/5987/5987462.png" }} style={{ height: 100, width: 100 }} />
+            <Pressable onPress={pickImage}>
+                <Image source={{ uri: user.profile_image }} style={{ height: 100, width: 100 }} />
+            </Pressable>
             <View>
                 <Text>Nome: {user.nome} {user.sobrenome}</Text>
                 <Text>Email: {user.email}</Text>

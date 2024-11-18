@@ -41,6 +41,7 @@ export default TelaLogin = () => {
             if (response.status == 200) {
                 const data = await response.json()
                 getUser(data.user_id)
+                router.replace("/telaPerfil")
             }
 
 
