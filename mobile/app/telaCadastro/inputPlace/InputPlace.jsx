@@ -4,9 +4,9 @@ import { Text, TextInput, View, StyleSheet, Image } from "react-native";
 export default function InputPlace({ label, icon, onChangeTextHandler, value }) {
     return (
         <View style={styles.InputPlace}>
-            <Text>{label}</Text>
+            <Text style={styles.label}>{label}</Text>
             <View style={styles.input}>
-                <TextInput style={styles.inputComponent} value={value} onChangeText={onChangeTextHandler} />
+                <TextInput style={styles.inputComponent} value={value} onChangeText={onChangeTextHandler} selectionColor="#5732f1"/>
                 <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
             </View>
 
@@ -20,10 +20,13 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        width: "100%"
+        width: "100%",
+        marginTop: "10px"
     },
     inputComponent: {
-        width: '80%'
+        width: '80%',
+        borderWidth: 0,
+        outlineWidth: 0
     },
 
     input: {
@@ -37,5 +40,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 40,
         borderRadius: 5
+    },
+    label: {
+        color: '#FFFFFF'
     }
 })

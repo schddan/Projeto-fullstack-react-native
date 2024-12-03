@@ -4,10 +4,12 @@ import { Text, TextInput, View, StyleSheet, Image } from "react-native";
 export default function InputPlace({ label, icon, onChangeTextHandler, value }) {
     return (
         <View style={styles.InputPlace}>
-            <Text>{label}</Text>
-            <View style={styles.input}>
-                <TextInput style={styles.inputComponent} value={value} onChangeText={onChangeTextHandler} />
-                <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+            <View style={styles.centralizando}>
+                <Text style={styles.label}>{label}</Text>
+                <View style={styles.input}>
+                    <TextInput style={styles.inputComponent} value={value} onChangeText={onChangeTextHandler} />
+                    <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+                </View>
             </View>
 
         </View>
@@ -17,13 +19,20 @@ export default function InputPlace({ label, icon, onChangeTextHandler, value }) 
 const styles = StyleSheet.create({
     InputPlace: {
         display: 'flex',
-        alignItems: "flex-start",
+        alignItems: "center",
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        width: "100%"
+        width: "100%",
+        marginTop: 5,
+    },
+    centralizando: {
+        display: 'flex',
+        alignItems: "flex-start",
     },
     inputComponent: {
-        width: '80%'
+        width: '80%',
+        borderWidth: 0,
+        outlineWidth: 0
     },
 
     input: {
@@ -36,6 +45,11 @@ const styles = StyleSheet.create({
         borderColor: "#afafaf",
         borderWidth: 1,
         height: 40,
-        borderRadius: 5
+        borderRadius: 5,
+        marginTop: 10
+    },
+    label: {
+        color: '#FFFFFF',
+        marginTop: 7
     }
 })

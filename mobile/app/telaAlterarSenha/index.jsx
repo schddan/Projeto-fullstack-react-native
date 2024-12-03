@@ -35,22 +35,22 @@ export default TelaLogin = () => {
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Alterar Senha</Text>
-            <View>
-                <InputPlace value={novaSenha} onChangeTextHandler={setNovaSenha}  label={"Nova Senha"} />
-                <InputPlace value={confirmarNovaSenha} onChangeTextHandler={setConfirmarNovaSenha} label={"Confirmar Nova Senha"} />
+            <Text style={styles.title}>Altere Sua Senha</Text>
 
+            <View style={styles.form}>
+                <View>
+                    <InputPlace value={novaSenha} onChangeTextHandler={setNovaSenha}  label={"Nova Senha"} />
+                    <InputPlace value={confirmarNovaSenha} onChangeTextHandler={setConfirmarNovaSenha} label={"Confirmar Nova Senha"} />
+                </View>
+                <Pressable style={styles.button} onPress={fetchData}><Text style={{ color: '#ffffff' }}>Alterar</Text></Pressable>
             </View>
-            <Pressable style={styles.button} onPress={fetchData}><Text style={{ color: '#ffffff' }}>Alterar</Text></Pressable>
-
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#05142E",
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -60,15 +60,26 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: "#1B4184"
     },
     button: {
-        backgroundColor: '#333333',
+        backgroundColor: '#4C648C',
         width: 250,
         height: 40,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 5
+        borderRadius: 5,
+        marginTop: 20
+    },
+    form: {
+        backgroundColor: '#1B4184',
+        borderRadius: 7,
+        width: 350,
+        height: 270,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
