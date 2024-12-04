@@ -53,8 +53,8 @@ export default TelaLogin = () => {
             <Text style={styles.title}>Bem-vindo!</Text>
             <Text style={styles.subtitle}>Faça Login</Text>
             <View style={styles.form}>
-                <InputPlace value={email} onChangeTextHandler={setEmail} icon={"https://img.icons8.com/?size=100&id=PedPR10iVAnY&format=png&color=5732F1"} label={"Email"} />
-                <InputPlace value={password} onChangeTextHandler={setPassword} icon={"https://img.icons8.com/?size=100&id=XkaSssewbJSt&format=png&color=5732F1"} label={"Senha"} />
+                <InputPlace value={email} onChangeTextHandler={setEmail} icon={"https://img.icons8.com/?size=100&id=PedPR10iVAnY&format=png&color=1B4184"} label={"Email"} />
+                <InputPlace value={password} onChangeTextHandler={setPassword} icon={"https://img.icons8.com/?size=100&id=XkaSssewbJSt&format=png&color=1B4184"} label={"Senha"} />
                 <Link href={"/telaCadastro"} style={styles.link}><Text style={styles.link_text}>Não possui uma conta? Cadastre-se</Text></Link>
             </View>
             <Pressable style={styles.button} onPress={fetchData}><Text style={{ color: '#ffffff' }}>Login</Text></Pressable>

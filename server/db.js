@@ -45,7 +45,6 @@ const User = sequelize.define('user', {
     }
 }, { freezeTableName: true })
 
-// Tabela de artistas
 const Artist = sequelize.define('artist', {
     nome: {
         type: Sequelize.DataTypes.STRING,
@@ -62,6 +61,11 @@ const Album = sequelize.define('album', {
     anoLancamento: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
+    },
+    coverImage: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true,
+        defaultValue: 'https://cdn-icons-png.flaticon.com/512/26/26789.png'
     }
 }, { freezeTableName: true })
 
@@ -72,17 +76,21 @@ const Music = sequelize.define('music', {
         allowNull: false,
     },
     duracao: {
-        type: Sequelize.DataTypes.INTEGER, // Duração em segundos
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
+    },
+    coverImage: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true,
+        defaultValue: 'https://cdn-icons-png.flaticon.com/512/26/26789.png'
     }
 }, { freezeTableName: true })
 
-// Relacionamentos
-Artist.belongsToMany(Music, { through: 'MusicArtist' }) // Muitos para muitos entre Artistas e Músicas
+Artist.belongsToMany(Music, { through: 'MusicArtist' })
 Music.belongsToMany(Artist, { through: 'MusicArtist' })
 
-Album.hasMany(Music) // Um álbum pode ter várias músicas
-Music.belongsTo(Album) // Uma música pertence a um álbum
+Album.hasMany(Music) 
+Music.belongsTo(Album)
 
 const criarTabelas = () => {
     sequelize.authenticate().then(() => {

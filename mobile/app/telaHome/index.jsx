@@ -1,30 +1,47 @@
-import React, {useContext} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, Image, Pressable } from "react-native";
 import { AppContext } from "../../scripts/AppContext";
+import { router } from "expo-router";
 
-
-const HomeScreen = () => {
+const TelaHome = () => {
     const { user, setUser } = useContext(AppContext);
+    const [recommendedAlbums, setRecommendedAlbums] = useState([]);
+
+    const carregarRecomendados = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/conteudo/recomendados"); 
+            const data = await response.json();
+            setRecommendedAlbums(data); 
+        } catch (error) {
+            console.error("Erro ao carregar álbuns recomendados:", error);
+        }
+    };
+
+    useEffect(() => {
+        carregarRecomendados();
+    }, []);
 
     const recentItems = [
-        { id: 1, type: "Música", title: "Blinding Lights", image: "https://img.icons8.com/color/100/000000/music.png" },
-        { id: 2, type: "Álbum", title: "After Hours", image: "https://img.icons8.com/color/100/000000/compact-disc.png" },
-        { id: 3, type: "Playlist", title: "Top Hits", image: "https://img.icons8.com/color/100/000000/playlist.png" },
-    ];
-
-    const recommendedAlbums = [
-        { id: 1, title: "Random Access Memories", image: "https://img.icons8.com/color/100/000000/album.png" },
-        { id: 2, title: "Abbey Road", image: "https://img.icons8.com/color/100/000000/album.png" },
-        { id: 3, title: "The Dark Side of the Moon", image: "https://img.icons8.com/color/100/000000/album.png" },
+        { id: 1, type: "Música", title: "Blinding Lights", image: "https://i.scdn.co/image/ab67616d0000b273a3eff72f62782fb589a492f9" },
+        { id: 2, type: "Álbum", title: "After Hours", image: "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36" },
+        { id: 3, type: "Playlist", title: "Top Hits", image: "https://yt3.googleusercontent.com/1e5n7WMrB8pKP2zdjeUaK_RlmknQLxhHK9-JKjcw5Fok1I7QddjeE3ZXlRwYjYsE5RRSHcrNgQ=s900-c-k-c0x00ffffff-no-rj" },
     ];
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                            <Text style={styles.title}>Bem-vindo!</Text>
-                            <Image source={{ uri: user.profile_image }} style={{ height: 100, width: 100, borderRadius: 50 }} />
-
+                <View style={styles.headerLeft}>
+                    <Image
+                        source={require('../../assets/images/logo.png')}
+                        style={{ height: 100, width: 100, marginTop: -25, marginLeft: -20, borderRadius: 50 }}
+                    />
+                    <Text style={styles.title}>Bem-vindo!</Text>
+                </View>
+                <Pressable onPress={() => { router.replace("/telaPerfil") }}>
+                    <Image source={{ uri: user.profile_image }} style={{ height: 50, width: 50, borderRadius: 50, marginTop: -20 }} />
+                </Pressable>
             </View>
+
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Recentes</Text>
                 <View style={styles.recentItems}>
@@ -42,8 +59,11 @@ const HomeScreen = () => {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll}>
                     {recommendedAlbums.map((album) => (
                         <View key={album.id} style={styles.album}>
-                            <Image source={{ uri: album.image }} style={styles.albumImage} />
-                            <Text style={styles.albumTitle}>{album.title}</Text>
+                            <Image
+                                source={{ uri: album.coverImage }} 
+                                style={styles.albumImage}
+                            />
+                            <Text style={styles.albumTitle}>{album.titulo}</Text>
                         </View>
                     ))}
                 </ScrollView>
@@ -111,6 +131,17 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         textAlign: "center",
     },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    headerLeft: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+    }
 });
 
-export default HomeScreen;
+export default TelaHome;

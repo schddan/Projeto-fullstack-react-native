@@ -46,11 +46,11 @@ export default TelaCadastro = () => {
 
             <Text style={styles.title}>Crie sua conta</Text>
             <View style={styles.form}>
-                <InputPlace style={styles.inputs} value={name} onChangeTextHandler={setName} icon={"https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=5732F1"} label={"Nome"} />
-                <InputPlace style={styles.inputs} value={surname} onChangeTextHandler={setSurName} icon={"https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=5732F1"} label={"Sobrenome"} />
-                <InputPlace style={styles.inputs} value={email} onChangeTextHandler={setEmail} icon={"https://img.icons8.com/?size=100&id=PedPR10iVAnY&format=png&color=5732F1"} label={"Email"} />
-                <InputPlace style={styles.inputs} value={birthdate} onChangeTextHandler={setBirthdate} icon={"https://img.icons8.com/?size=100&id=vwGXRtPWrZSn&format=png&color=5732F1"} label={"Data de nascimento"} />
-                <InputPlace style={styles.inputs} value={password} onChangeTextHandler={setPassword} icon={"https://img.icons8.com/?size=100&id=XkaSssewbJSt&format=png&color=5732F1"} label={"Senha"} />
+                <InputPlace style={styles.inputs} value={name} onChangeTextHandler={setName} icon={"https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=1B4184"} label={"Nome"} />
+                <InputPlace style={styles.inputs} value={surname} onChangeTextHandler={setSurName} icon={"https://img.icons8.com/?size=100&id=zxB19VPoVLjK&format=png&color=1B4184"} label={"Sobrenome"} />
+                <InputPlace style={styles.inputs} value={email} onChangeTextHandler={setEmail} icon={"https://img.icons8.com/?size=100&id=PedPR10iVAnY&format=png&color=1B4184"} label={"Email"} />
+                <InputPlace style={styles.inputs} value={birthdate} onChangeTextHandler={setBirthdate} icon={"https://img.icons8.com/?size=100&id=vwGXRtPWrZSn&format=png&color=1B4184"} label={"Data de nascimento"} />
+                <InputPlace style={styles.inputs} value={password} onChangeTextHandler={setPassword} icon={"https://img.icons8.com/?size=100&id=XkaSssewbJSt&format=png&color=1B4184"} label={"Senha"} />
             </View>
 
             <Pressable style={styles.button} onPress={fetchData}><Text style={{ color: '#ffffff' }}>Enviar</Text></Pressable>

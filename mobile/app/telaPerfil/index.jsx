@@ -81,6 +81,9 @@ export default TelaPerfil = () => {
                 <Pressable style={styles.button} onPress={() => {router.replace("/telaAlterarSenha")}}>
                     <Text style={{ color: '#ffffff' }}>Alterar Senha</Text>
                 </Pressable>  
+                <Pressable style={styles.button} onPress={() => {router.replace("/")}}>
+                    <Text style={{ color: '#ffffff' }}>Sair</Text>
+                </Pressable>  
             </View>
         </View>
     )
